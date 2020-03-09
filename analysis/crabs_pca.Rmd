@@ -137,3 +137,8 @@ chart$scree()
 
 ```
 
+# Conclusion 
+
+>  Rédiger en maximum 5 lignes la conclusion de cette analyse. Comparez les deux analyses dans cette conclusion.
+
+
