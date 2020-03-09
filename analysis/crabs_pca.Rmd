@@ -1,0 +1,139 @@
+---
+title: "Untitled"
+author: '...'
+date: "3/9/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# packages
+SciViews::R()
+```
+
+# Objectif
+
+Ce document s'intéresse à la réalisation d'une ACP.
+
+# Situation
+
+Si vous souhaitez d'avantages d'informations, vous pouvez consulter la page d'aide suivante.
+
+```{r, eval FALSE}
+.?crabs
+```
+
+# Analyse
+
+## Analyse sur les variables brutes
+
+> Avant de débuter votre analyse, ajoutez dans le code SciViews lié à l'ACP mis à votre disposition dans le bookdown : <http://biodatascience-course.sciviews.org/sdd-umons2/acp-afc.html>
+
+```{r sciviews-acp}
+
+```
+
+> Importez le jeu de données crabs du package `MASS` Complétez la fonction read ci-dessous
+
+```{r importation}
+crabs <- read("...", package = "...")
+```
+
+> Utilisez la fonction skim() du package de `skimr` afin de prendre connaissance du tableau de données. Cette première étape vous permet de vérifier si vous avez des valeurs manquantes, des variables mal encodées,... Commentez en maximum 2 phrases le résultat de cette première fonction.
+
+```{r skim}
+
+```
+
+> Réalisez une ACP avec la fonction `pca()`. Utilisez l'ensemble des variables disponibles et pertinentes. Centrez les données. 
+
+```{r pca}
+crabs_pca <- pca()
+```
+
+> Utilisez la fonction summary() afin d'avoir un résumé de l'informations de l'objet crabs_pca. Commentez en maximum 3 phrases le résultat de cette première fonction.
+
+```{r pca_summary}
+summary(..., loadings = TRUE, cutoff = 0.1)
+```
+
+
+> Utilisez la fonction combine_chart() afin de présenter dans un graphique combiné les deux formes de graphiques des éboulis. Ces deux graphiques rendent compte de la répartition de la variance entre les différentes composantes principales. Commentez en maximum 2 phrases le résultat de cette fonction.
+
+```{r pca_scree}
+a <- chart$scree()
+b <- chart$altscree()
+
+combine_charts()
+```
+
+> Réalisez le graphique qui permet la représentation dans l'espace des variables. Ce dernier est un clé d'interprétation afin de comprendre la répartition des points sur une acp (nous allons le réaliser ci-dessous). Commentez en maximum 3 phrases le résultat de cette fonction.
+
+
+```{r pca_loadings}
+
+```
+
+> Réalisez le graphique qui permet la représentation dans l'espace des individus. Par défaut, ce dernier montre la répartition des points sur les 2 premières composantes principales. 
+
+```{r pca_scores}
+
+```
+
+> Ajoutez à ce graphique des labels avec les informations sur la variable `species` et la varaible `sex`. Utilisez ensuite la fonction chart$scores() à nouveau. Commentez en maximum 3 phrases le résultat de cette fonction.
+
+```{rpca_score2}
+crabs %>.%
+  mutate(., sp_sex = paste(...)) -> crabs
+
+
+```
+
+## Analyse sur des indices calculés
+
+> La première composante principales est saturée. Il est dans ce cas utile de calculer des indices. Réalisez la même analyse en divisant chacune des variables par la variable `length`
+
+```{r pca2_index}
+crabs %>.%
+  mutate(., 
+         front2 = front/length,
+         ...) -> crabs
+```
+
+> Réalisez une ACP avec la fonction `pca()`. Utilisez l'ensemble des variables disponibles et pertinentes. Centrez les données. 
+
+```{r pca2}
+crabs_pca <- pca()
+```
+
+> Utilisez la fonction summary() afin d'avoir un résumé de l'informations de l'objet crabs_pca. Commentez en maximum 3 phrases le résultat de cette première fonction.
+
+```{r pca2_summary}
+summary(..., loadings = TRUE, cutoff = 0.1)
+```
+
+
+> Réalisez le graphique des éboulis. Ce graphique rend compte de la répartition de la variance entre les différentes composantes principales. Commentez en maximum 2 phrases le résultat de cette fonction.
+
+```{r pca2_scree}
+chart$scree()
+```
+
+> Réalisez le graphique chart$loadings(). Ce dernier est un clé d'interprétation afin de comprendre la répartition des points sur une acp (nous allons le réaliser ci-dessous). Commentez en maximum 3 phrases le résultat de cette fonction.
+
+```{r pca2_loadings}
+
+```
+
+> Réalisez le graphique chart$scores() avec des labels donnant les informations sur la variable `species` et la varaible `sex`. Commentez en maximum 3 phrases le résultat de cette fonction.
+
+```{r pca2_scores}
+
+```
+
+> Ajoutez au graphique précédents des éllipses avec la fonction stat_ellipse()
+
+```{r pca2_scores2}
+
+```
+
