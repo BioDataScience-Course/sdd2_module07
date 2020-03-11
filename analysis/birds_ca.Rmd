@@ -1,0 +1,118 @@
+---
+title: "Untitled"
+author: '...'
+date: "3/9/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# packages
+SciViews::R()
+```
+
+# Objectif
+
+Ce document s'intéresse à la réalisation d'une AFC.
+
+
+```{r}
+
+chart$scree(birds_ca, fill = "cornsilk")
+
+chart$biplot(birds_ca, choices = c(1, 2), repel = TRUE)
+# Fauvette mélanocéphale, Fauvette pitchou et Fauvette passerinette pratiquement présentes seulement en la station S22
+# Le reste est moins facile à analyser. Ceci ressemble très fort à marbio...
+
+```
+
+
+Si vous souhaitez d'avantages d'informations, vous pouvez consulter la page d'aide suivante.
+
+# Analyse
+
+## Analyse sur les variables brutes
+
+> Avant de débuter votre analyse, ajoutez dans le code SciViews lié à l'AFC mis à votre disposition dans le bookdown : <http://biodatascience-course.sciviews.org/sdd-umons2/analyse-factorielle-des-correspondances.html>
+
+```{r sciviews-afc}
+
+```
+
+> Importez l'objet `atlas` du package `ade4`. Utilisez la page d'aide pour en apprendre d'avantage sur cet objet. Commentez cet objet en maximum 4 lignes.
+
+```{r importation}
+data(atlas, package = "...")
+class(atlas) # type de l'objet
+?...
+?atlas
+```
+
+
+> De l'objet atlas, vous devez extraire le tableau de données `birds`
+
+```{r}
+birds <- ...$birds
+```
+
+> Utilisez les fonctions ci-dessous afin de découvrir les données. Répondez au questions suivantes : Combien y a t'il de stations ? Combien y a t'il d'espèces étudiées ? Combien y Quels est le nombre maximum d'observations sur le stations (sans tenir compte des espèces.) ? Y a t'il une station qui sans aucune observations d'oiseaux recensés ? ... Commentez en maximum 4 lignes.
+
+```{r}
+# il existe de nombreuses fonctions dans R pour découvrir des nouvelles données. 
+names(...)
+range(...) 
+rowSums(...)
+colSums(...)
+```
+
+
+> Utilisez les instructions ci-dessous pour réaliser un graphique pertinent sur ce type de données. Commentez en maximum 4 lignes.
+
+```{r}
+birds %>.%
+  gather(., key = "species", value = "n", factor_key = TRUE) %>.%
+  mutate(., station = rep(1:nrow(birds), ncol(birds))) %>.%
+  chart(., species ~ station %fill=% n) +
+  geom_raster()
+```
+
+
+> Réalisez l'analyse de correspondances sur le jeu de données birds. Nommez cet objet `birds_ca`. Réalisez à la suite un résumé de cet objet. Commentez en maximum 2 lignes.
+
+```{r ca}
+birds_ca <- 
+summary(...)
+```
+
+
+> Réalisez le graphique des éboulis sur cet objet. Commentez en maximum 2 lignes.
+
+```{r scree}
+
+```
+
+
+> Réalisez la représentation dans l'espaces des stations et des espèces. Commentez en maximum 2 lignes.
+
+```{r}
+chart$biplot( ..., choices = c(1, 2), repel = TRUE)
+```
+
+# Conclusion 
+
+>  Rédiger en maximum 2 lignes la conclusion de cette analyse. 
+
+# Challenge 
+
+L'objet atlas comprend toutes les données nécessaires à la réalisation d'une carte. 
+
+Serez-vous capable de nous proposer un belle carte de la situation ? 
+
+
+```{r challenge}
+
+```
+
+
+
+
