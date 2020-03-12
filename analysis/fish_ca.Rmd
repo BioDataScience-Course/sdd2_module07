@@ -1,0 +1,168 @@
+---
+title: "Untitled"
+author: '...'
+date: "3/9/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# packages
+SciViews::R()
+library(ade4)
+```
+
+# Objectif
+
+Ce document s'intéresse à la réalisation d'une AFC.
+
+# Jeu de données
+
+> Ce travail s'intéresse à l'objet `doubs` du package `ade4`. Importez cet objet.
+
+```{r importation}
+library(ade4)
+
+data(...)
+```
+
+> Utiliez la page d'aide afin de vous renseigner sur l'objet `doubs`. Commentez cet objet en maximum 5 lignes.
+
+```{r aide}
+
+```
+
+# Préparation de la base de données fictives
+
+> Commentez l'instruction ci-dessous en maximum 2 lignes.
+
+```{r dbconnect}
+library('RSQLite')
+con <- dbConnect(RSQLite::SQLite(), dbname = "../data/doubs.sqlite")
+```
+
+> Utilisez la fonction `dbListTables()` afin de prendre connaissance du nombre de tableaux présents dans votre petite base de données exemple. Commentez l'instruction en maximum 1 ligne.
+
+```{r listtables}
+
+```
+
+> Utilisez la fonction dbWriteTable() afin d'ajouter les différentes tables comprises dans l'objet doubs dans votre base de données. 
+
+**Astuce: Il est intéressant de rajouter une colonne dans certaines tables avec le numéro de la station**
+
+```{r dbWritetable}
+
+```
+
+> Vérifiez à l'aide de la fonction de dbListTables que vos différentes tables ont bien été ajoutées à votre base de donnée.
+
+```{r dbcheck}
+
+```
+
+> Utilisez la fonction dbListFields() afin de prendre connaissance des variables de la table relative à la table `species` de l'objet doubs. Commentez en maximum 2 lignes votre résultat.
+
+```{r dblistfields}
+
+```
+
+> Utilisez vos différentes tables afin de trouver les numéro des stations dont le nombre de *Phoxinus phoxinus* est strictement supérieur à 4. Commentez en maximum 4 lignes votre résultat.
+
+```{r}
+
+```
+
+> Déconnectez vous de la base de données avec la fonction dbDisconnect()
+
+```{r dbdisconnect}
+
+```
+
+# Analyse
+
+## Analyse sur les variables brutes
+
+> Avant de débuter votre analyse, ajoutez dans le code SciViews lié à l'AFC mis à votre disposition dans le bookdown : <http://biodatascience-course.sciviews.org/sdd-umons2/analyse-factorielle-des-correspondances.html>
+
+```{r sciviews-afc}
+
+```
+
+
+> Connectez vous à votre base de données
+
+```{r dbconnect1}
+
+```
+
+> Exportez la table `fish` de votre base de données avec la fonction `dbReadTable()`. 
+
+```{r export}
+
+```
+
+> Déconnectez vous de votre base de données
+
+```{r dbdisconnect2}
+
+```
+
+
+> Si votre tableau comprend une colonne relative au station, transformez cette dernière en nom des lignes avec la fonction `column_to_rownames()`
+
+```{r rownames}
+
+```
+
+> Utilisez les fonctions ci-dessous afin de découvrir les données. Répondez au questions suivantes : Combien y a t'il de stations ? Combien y a t'il d'espèces étudiées ? Combien y Quels est le nombre maximum d'observations sur le stations (sans tenir compte des espèces.) ? Y a t'il une station qui sans aucune observations d'oiseaux recensés ? ... Commentez en maximum 4 lignes.
+
+```{r}
+# il existe de nombreuses fonctions dans R pour découvrir des nouvelles données. 
+names(...)
+range(...) 
+rowSums(...)
+colSums(...)
+```
+
+> Utilisez les instructions ci-dessous pour réaliser un graphique pertinent sur ce type de données. Commentez en maximum 4 lignes.
+
+```{r}
+fish %>.%
+  gather(., key = "species", value = "n", factor_key = TRUE) %>.%
+  mutate(., station = rep(1:nrow(fish), ncol(fish))) %>.%
+  chart(., species ~ station %fill=% n) +
+  geom_raster()
+```
+
+> Si dans votre exploration vous avez détecté un ligne contenant uniquement de zéro ou une colonne, Supprimez cette dernière.
+
+```{r delete}
+
+```
+
+> Réalisez l'analyse de correspondances sur le jeu de données birds. Nommez cet objet `fish_ca`. Réalisez à la suite un résumé de cet objet. Commentez en maximum 2 lignes.
+
+```{r ca}
+fish_ca <- 
+summary(...)
+```
+
+
+> Réalisez le graphique des éboulis sur cet objet. Commentez en maximum 2 lignes.
+
+```{r scree}
+
+```
+
+
+> Réalisez la représentation dans l'espaces des stations et des espèces. Commentez en maximum 2 lignes.
+
+```{r biplot}
+chart$biplot( ..., choices = c(1, 2), repel = TRUE)
+```
+
+# Conclusion 
+
+>  Rédiger en maximum 2 lignes la conclusion de cette analyse. 
+
