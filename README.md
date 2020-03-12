@@ -12,3 +12,4 @@ Il est possible que ce document évolue au cours du temps. N'hésitez pas à vé
 
 - au sein du fichier `birds_ca.Rmd`, complétez les zones manquantes. Ce fichier se trouve dans le dossier `analysis`
 
+- Au sein du fichier `fish_ca.Rmd`, COmplétez les zones manquantes. Ce fichier se trouve dans le dossier `analysis`

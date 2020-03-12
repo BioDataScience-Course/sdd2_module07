@@ -82,7 +82,7 @@ combine_charts()
 
 > Ajoutez à ce graphique des labels avec les informations sur la variable `species` et la varaible `sex`. Utilisez ensuite la fonction chart$scores() à nouveau. Commentez en maximum 3 phrases le résultat de cette fonction.
 
-```{rpca_score2}
+```{r pca_score2}
 crabs %>.%
   mutate(., sp_sex = paste(...)) -> crabs
 

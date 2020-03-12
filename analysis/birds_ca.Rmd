@@ -8,26 +8,13 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # packages
-SciViews::R()
+SciViews::R
 ```
 
 # Objectif
 
 Ce document s'intéresse à la réalisation d'une AFC.
 
-
-```{r}
-
-chart$scree(birds_ca, fill = "cornsilk")
-
-chart$biplot(birds_ca, choices = c(1, 2), repel = TRUE)
-# Fauvette mélanocéphale, Fauvette pitchou et Fauvette passerinette pratiquement présentes seulement en la station S22
-# Le reste est moins facile à analyser. Ceci ressemble très fort à marbio...
-
-```
-
-
-Si vous souhaitez d'avantages d'informations, vous pouvez consulter la page d'aide suivante.
 
 # Analyse
 
